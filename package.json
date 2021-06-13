@@ -1,0 +1,28 @@
+{
+  "name": "mini-js-builder",
+  "version": "1.0.0",
+  "description": "a simple js builder tool, works with commonjs modules",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier 'src/**/*.js' --write",
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "build",
+    "tool",
+    "require",
+    "commonjs",
+    "concat"
+  ],
+  "author": "Fran Cortes",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.3.1"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.14.5",
+    "@babel/traverse": "^7.14.5",
+    "crypto-js": "^4.0.0"
+  }
+}
