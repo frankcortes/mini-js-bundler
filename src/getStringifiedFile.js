@@ -9,7 +9,7 @@ function getStringifiedModule({ code, _ref, id }) {
   }
 
   return `__modules__['${id}'] = {
-    code: (function(require, exports){\n${code}\n}),\n
+    code: (function(require, exports, module){\n${code}\n}),\n
     _ref: ${JSON.stringify(_ref)},\n
     exports: {},\n
   };\n`;
@@ -40,7 +40,14 @@ function getRequireForModule(moduleId) {
 function execModule(moduleId) {
   const requiredModule = __modules__[moduleId];
   requiredModule.wasExecuted = true;
-  requiredModule.code(getRequireForModule(moduleId), requiredModule.exports);
+  const moduleObject = {
+    exports: requiredModule.exports
+  };
+  Object.defineProperty(moduleObject, 'id', {
+    value: moduleId,
+    writable: false,
+  });
+  requiredModule.code(getRequireForModule(moduleId), requiredModule.exports, moduleObject);
 }
 
 function getStringifiedModules(modules) {

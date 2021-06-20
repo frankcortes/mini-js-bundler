@@ -1,4 +1,3 @@
-const md5 = require("crypto-js/md5");
 const fs = require("fs/promises");
 const path = require('path');
 const getModule = require("./getModule");
@@ -11,7 +10,7 @@ async function getModules(fileName, alreadyVisitedModules = []) {
   const absoluteFileName = path.resolve(fileName);
 
   // Not need to add it again, this was previously resolved.
-  if (alreadyVisitedModules.includes(`_${md5(absoluteFileName)}`)) {
+  if (alreadyVisitedModules.includes(absoluteFileName)) {
     return [];
   }
 
@@ -29,7 +28,7 @@ async function getModules(fileName, alreadyVisitedModules = []) {
 
 async function main() {
   try {
-    const modules = await getModules("./tests/circular-reference/a.js");
+    const modules = await getModules("./tests/use-module-to-export/a.js");
 
     // At this point, every module was calculated via DFS algorithm.
     fs.writeFile("./dist/output.js", getStringifiedFile(modules), "utf-8");
