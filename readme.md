@@ -27,7 +27,6 @@ You can change the output between different examples by switching the name in [t
 ### TODO
 * Be totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1))
 * Have a serious CLI, with proper documentation
-* Support files with and without `.js` extension
 * Tests, all of them
 * Support `module.exports`
 * Support `exports.default` properly

@@ -1,5 +1,12 @@
 const path = require("path");
 
-module.exports = function getAbsolutePath(p, parent) {
-  return path.resolve(path.dirname(parent), `${p}.js`);
+function getNormalizedRoute(route) {
+  if(route.endsWith('.js')) {
+    return route;
+  }
+  return `${route}.js`;
+}
+
+module.exports = function getAbsolutePath(route, parent) {
+  return path.resolve(path.dirname(parent), getNormalizedRoute(route));
 };
