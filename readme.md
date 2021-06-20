@@ -2,7 +2,7 @@
 
 **Disclaimer! Toy Project. Don't expect maintenance**
 
-A simple js builder tool with no config but the main file as a unique argument, works with commonjs modules.
+A simple js builder tool with no config but the main file as a unique argument, works with commonjs modules. Totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1))
 
 ![Example about how works](./docs/example-output.jpg)
 
@@ -25,9 +25,5 @@ npm start
 You can change the output between different examples by switching the name in [this line](https://github.com/frankcortes/mini-js-builder/blob/main/src/index.js#L33).
 
 ### TODO
-* Be totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1))
 * Have a serious CLI, with proper documentation
 * Tests, all of them
-* Support `module.exports`
-* Support `exports.default` properly
-* Better use of module indexes.

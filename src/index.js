@@ -28,7 +28,7 @@ async function getModules(fileName, alreadyVisitedModules = []) {
 
 async function main() {
   try {
-    const modules = await getModules("./tests/use-module-to-export/a.js");
+    const modules = await getModules("./tests/exports-whole-obj/a.js");
 
     // At this point, every module was calculated via DFS algorithm.
     fs.writeFile("./dist/output.js", getStringifiedFile(modules), "utf-8");

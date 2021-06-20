@@ -7,12 +7,24 @@ function getStringifiedModule({ code, _ref, id }) {
   if (!code) {
     return;
   }
-
-  return `__modules__['${id}'] = {
-    code: (function(require, exports, module){\n${code}\n}),\n
-    _ref: ${JSON.stringify(_ref)},\n
-    exports: {},\n
-  };\n`;
+  // Create a read-only object except the exports property
+  return `
+    __modules__['${id}'] = {}; \n
+    Object.defineProperties(__modules__['${id}'], {\n
+      code: {\n
+        value: (function(require, exports, module){\n${code}\n}),\n
+      },\n
+      _ref: {\n
+        value: ${JSON.stringify(_ref)},\n
+      },\n
+      exports: {\n
+        value: {},\n
+        writable: true, \n
+      },\n
+      id: {\n
+        value: '${id}',\n
+      },\n
+    });\n\n`
 }
 
 // This method overrides the original require for each module.
@@ -40,14 +52,7 @@ function getRequireForModule(moduleId) {
 function execModule(moduleId) {
   const requiredModule = __modules__[moduleId];
   requiredModule.wasExecuted = true;
-  const moduleObject = {
-    exports: requiredModule.exports
-  };
-  Object.defineProperty(moduleObject, 'id', {
-    value: moduleId,
-    writable: false,
-  });
-  requiredModule.code(getRequireForModule(moduleId), requiredModule.exports, moduleObject);
+  requiredModule.code(getRequireForModule(moduleId), requiredModule.exports, requiredModule);
 }
 
 function getStringifiedModules(modules) {
