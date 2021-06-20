@@ -30,7 +30,7 @@ async function getModules(fileName, alreadyVisitedModules = []) {
 
 async function main() {
   try {
-    const modules = await getModules("./tests/same-dep-twice/a.js");
+    const modules = await getModules("./tests/with-directories/a.js");
 
     // At this point, every module was calculated via DFS algorithm.
     // TODO: avoid duplicate references.
