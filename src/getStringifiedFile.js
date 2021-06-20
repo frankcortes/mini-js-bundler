@@ -2,6 +2,12 @@
  * Scopes the program inside of a function that overrides the meaning of require and exports, so we don't have to change the code. Also exposes the references in the requires and creates a exports object.
  */
 function getStringifiedModule({ code, _ref, id }) {
+  // This is the case for not-resolved modules, we don't have to add
+  // anything here.
+  if (!code) {
+    return;
+  }
+
   return `__modules__['${id}'] = {
     code: (function(require, exports){\n${code}\n}),\n
     _ref: ${JSON.stringify(_ref)},\n
@@ -15,9 +21,9 @@ function getRequireForModule(moduleId) {
     const requiredModuleId = __modules__[moduleId]._ref[path];
     const requiredModule = __modules__[requiredModuleId];
 
-    // The module does not exist, we return an empty object.
+    // The module does not exist, we throw an error.
     if (!requiredModule) {
-      return {};
+      throw Error(`Cannot find module '${path}'`);
     }
 
     // First time we required we have to execute it and assure this is not going to be

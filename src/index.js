@@ -18,7 +18,6 @@ async function getModules(fileName, alreadyVisitedModules = []) {
   const mod = await getModule(absoluteFileName);
   alreadyVisitedModules.push(mod.id);
 
-  // TODO: This only works with requires without extension, i.e. require('./a')
   const otherMods = await Promise.all(
     Object.keys(mod._ref).map(
       async (p) => await getModules(getAbsolutePath(p, absoluteFileName), alreadyVisitedModules)
@@ -33,7 +32,6 @@ async function main() {
     const modules = await getModules("./tests/circular-reference/a.js");
 
     // At this point, every module was calculated via DFS algorithm.
-    // TODO: avoid duplicate references.
     fs.writeFile("./dist/output.js", getStringifiedFile(modules), "utf-8");
   } catch (e) {
     console.log(e);

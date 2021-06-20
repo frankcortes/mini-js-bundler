@@ -38,7 +38,11 @@ module.exports = async function getModule(fileName) {
       id, // identifier of the module.
     };
   } catch (e) {
-    console.log(e);
-    throw Error(`Module ${fileName} was not loaded.`);
+    // In this case, the require module cannot be returned, so we will
+    // return an empty module here and this will throw an error in the
+    // concatenated file in execution time
+    console.warn(`[WARN] ${fileName} was not found, but doing the build anyway`);
+    const id = `_${md5(fileName)}`;
+    return { id, _ref: [] };
   }
 };
