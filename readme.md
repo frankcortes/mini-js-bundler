@@ -1,7 +1,5 @@
 ## mini JS builder
 
-**Disclaimer! Toy Project. Don't expect maintenance**
-
 A simple js builder tool with no config but the main file as a unique argument, works with commonjs modules. Totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1))
 
 ![Example about how works](./docs/example-output.jpg)
@@ -15,11 +13,21 @@ A simple js builder tool with no config but the main file as a unique argument, 
 * ???
 * Profit
 
+### How to use it
+
+It only accepts a main file:
+
+```sh
+// using the main file directly
+npm start ../other-things/my-file-with-requires.js
+// or...
+npm start --main=../other-things/my-file-with-requires.js
+```
+
 ### Check it!
 
 ```js
-nvm use
-npm start
+npm start ./tests/module-internals/a.js
 ```
 
 You can change the output between different examples by switching the name in [this line](https://github.com/frankcortes/mini-js-builder/blob/main/src/index.js#L33).
