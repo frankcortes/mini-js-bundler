@@ -11,7 +11,7 @@ async function main() {
     const modules = await getModules(args.main);
 
     // At this point, every module was calculated via DFS algorithm.
-    fs.writeFile("./dist/output.js", getStringifiedFile(modules), "utf-8");
+    fs.writeFile(args.output, getStringifiedFile(modules), "utf-8");
   } catch (e) {
     console.log(e);
   }

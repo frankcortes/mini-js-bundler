@@ -21,16 +21,24 @@ It only accepts a main file:
 // using the main file directly
 npm start ../other-things/my-file-with-requires.js
 // or...
-npm start --main=../other-things/my-file-with-requires.js
+npm start --main='../other-things/my-file-with-requires.js'
 ```
+
+By default, the generated file is stored in `dist/output.js`, but you could
+modify it by using the `--output` argument:
+
+```sh
+npm start ../other-things/my-file-with-requires.js --output='./other-output-name.js'
+```
+
 
 ### Check it!
 
-```js
-npm start ./tests/module-internals/a.js
-```
+You can check the output of [a variety of different examples](./tests) by executing:
 
-You can change the output between different examples by switching the name in [this line](https://github.com/frankcortes/mini-js-builder/blob/main/src/index.js#L33).
+```sh
+npm start ./tests/${nameOfExample}/a.js
+```
 
 ### TODO
 * Have a serious CLI, with proper documentation
