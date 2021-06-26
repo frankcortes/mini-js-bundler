@@ -1,4 +1,4 @@
-## mini JS bundler
+## mini JS bundler ![image](https://api.travis-ci.com/frankcortes/mini-js-bundler.svg?branch=main)
 
 A simple js bundler with no config but the main file as a unique argument, works with commonjs modules. Totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1))
 
@@ -34,12 +34,8 @@ npm start ../other-things/my-file-with-requires.js --output='./other-output-name
 
 ### Check it!
 
-You can check the output of [a variety of different examples](./tests) by executing:
+This command compares the bundler output against the node.js output without concatenating the files:
 
 ```sh
-npm start ./tests/${nameOfExample}/a.js
+npm test
 ```
-
-### TODO
-* Have a serious CLI, with proper documentation
-* Tests, all of them
