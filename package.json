@@ -1,5 +1,5 @@
 {
-  "name": "mini-js-builder",
+  "name": "mini-js-bundler",
   "version": "1.0.0",
   "description": "a simple js builder tool, works with commonjs modules",
   "main": "index.js",

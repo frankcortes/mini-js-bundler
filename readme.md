@@ -1,6 +1,6 @@
-## mini JS builder
+## mini JS bundler
 
-A simple js builder tool with no config but the main file as a unique argument, works with commonjs modules. Totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1))
+A simple js bundler with no config but the main file as a unique argument, works with commonjs modules. Totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1))
 
 ![Example about how works](./docs/example-output.jpg)
 
@@ -13,7 +13,7 @@ A simple js builder tool with no config but the main file as a unique argument, 
 * ???
 * Profit
 
-### How to use it
+### How to use it (CLI)
 
 It only accepts a main file:
 
