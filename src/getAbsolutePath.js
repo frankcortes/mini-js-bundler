@@ -1,7 +1,7 @@
 const path = require("path");
 
 function getNormalizedRoute(route) {
-  if(route.endsWith('.js')) {
+  if(route.endsWith('.js') || route.endsWith('.mjs')) {
     return route;
   }
   return `${route}.js`;
