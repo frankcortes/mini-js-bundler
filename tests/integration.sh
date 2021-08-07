@@ -8,14 +8,13 @@ do
   folder=${folders[$i]}
   extension=${extensions[$i]}
   suite=${suites[$i]}
-  echo "hello ${folder} ${extension} ${suite}"
 
   mkdir -p dist/${folder}
   touch dist/output.js dist/node-output.js
 
   for entry in "${folder}"/*
   do
-    echo "doing a bundle for ${entry}/a.${extension}..."
+    echo -e "\033[0mdoing a bundle for ${entry}/a.${extension}..."
     npm start -- --main=${entry}/a.${extension} --output=./dist/${entry}.js &> /dev/null
     node dist/${entry}.js >> dist/output.js  2> /dev/null
     node ${entry}/a.${extension} >> dist/node-output.js  2> /dev/null
