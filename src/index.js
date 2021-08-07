@@ -9,9 +9,10 @@ async function main() {
 
   try {
     const modules = await getModules(args.main);
+    const areESmodules = args.main.endsWith('.mjs');
 
     // At this point, every module was calculated via DFS algorithm.
-    fs.writeFile(args.output, getStringifiedFile(modules), "utf-8");
+    fs.writeFile(args.output, getStringifiedFile(modules, areESmodules), "utf-8");
   } catch (e) {
     console.log(e);
   }
