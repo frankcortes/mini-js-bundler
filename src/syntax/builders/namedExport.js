@@ -1,5 +1,5 @@
 const t = require('@babel/types');
-const getNameOfNode = require('./getNameOfNode');
+const getNameOfNode = require('../getNameOfNode');
 
 function getValueOfNode(node, type) {
   // TODO: check type by using isVariableDeclaration() babel utilities
