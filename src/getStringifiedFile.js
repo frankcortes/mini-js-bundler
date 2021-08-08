@@ -99,9 +99,13 @@ function getESModulesInitialization(modules, currentModule = modules[0]) {
     // This is an special case where we want to keep the import() execution but at
     // the same time we don't want to execute anything, so we have an special
     // module for that
-    currentModule._ref[localRef] = 'noop';
+    if(!referencedModule.wasFinished) {
+      currentModule._ref[localRef] = 'noop';
+    }
     return total;
   },'');
+
+  currentModule.wasFinished = true;
 
   return `${previousExecutions}execModule('${currentModule.id}');\n\n`;
 }
