@@ -8,7 +8,6 @@ const getAbsolutePath = require('../../getAbsolutePath');
  */
 module.exports = function visitImport(path, fileName, filesToRequire) {
   // TODO: only supports one default import without named declarations
-  // TODO: support aliases
   if (isDefaultImport(path)) {
     const localName =  path.get('specifiers')[0].node.local.name;
     const childFileName = path.get('source').node.value;
@@ -22,7 +21,6 @@ module.exports = function visitImport(path, fileName, filesToRequire) {
   }
   // Doing Named imports
   // TODO: support combined named and default imports
-  // TODO: support aliases
   const specifiers = path.get('specifiers');
   const childFileName = path.get('source').node.value;
   const moduleScope = path.scope.generateUidIdentifier("scopedModule");
@@ -32,8 +30,10 @@ module.exports = function visitImport(path, fileName, filesToRequire) {
 
   // Transform specifiers to achieve live import connection
   specifiers.forEach((specifier) => {
-    const namedVariable = specifier.node.local.name;
-    path.scope.rename(namedVariable, `${moduleScope.name}.${namedVariable}`);
+    const aliasedVariable = specifier.node.local.name;
+    const namedVariable = specifier.node.imported.name;
+
+    path.scope.rename(aliasedVariable, `${moduleScope.name}.${namedVariable}`);
   })
 
   const actualChildFileName = getAbsolutePath(childFileName, fileName);
