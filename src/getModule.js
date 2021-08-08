@@ -40,6 +40,7 @@ module.exports = async function getModule(fileName) {
     // In this case, the require module cannot be returned, so we will
     // return an empty module here and this will throw an error in the
     // concatenated file in execution time
+    console.log(e);
     console.warn(`[WARN] ${fileName} was not found, but doing the build anyway`);
     return { id: fileName, _ref: [] };
   }
