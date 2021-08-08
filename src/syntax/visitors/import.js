@@ -17,14 +17,23 @@ module.exports = function visitImport(path, fileName, filesToRequire) {
   specifiers.forEach((specifier) => {
     const aliasedVariable = specifier.node.local.name;
     let namedVariable;
+    let renamedVariable;
 
     if (specifier.type === 'ImportDefaultSpecifier') {
       namedVariable = 'default';
-    } else {
+    } else if (specifier.type !== 'ImportNamespaceSpecifier') {
       namedVariable = specifier.node.imported.name;
     }
 
-    path.scope.rename(aliasedVariable, `${moduleScope.name}.${namedVariable}`);
+    if (namedVariable) {
+      renamedVariable = `${moduleScope.name}.${namedVariable}`;
+    } else {
+      // This is for the module namespaced specifier case, returns
+      // the whole module
+      renamedVariable = moduleScope.name;
+    }
+
+    path.scope.rename(aliasedVariable, renamedVariable);
   })
 
   const actualChildFileName = getAbsolutePath(childFileName, fileName);
