@@ -1,5 +1,7 @@
-export const foo = 10;
+const b = function() {
+  return 'hi.';
+};
 
-export function bar() {
-  return 12;
-}
+const other = 'How is going?';
+
+export { other, b as foo };

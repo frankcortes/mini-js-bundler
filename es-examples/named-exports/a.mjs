@@ -1,4 +1,4 @@
-import { foo, bar } from './b.mjs';
+import { other, foo } from './b.mjs';
 
-console.log(foo); // 10
-console.log(bar()); // 12
+console.log(foo());
+console.log(other);
