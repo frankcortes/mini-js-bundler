@@ -28,6 +28,9 @@ module.exports = async function getModule(fileName) {
       },
       ExportNamedDeclaration(path) {
         visitors.namedExport(path);
+      },
+      ExportAllDeclaration(path) {
+        visitors.allExport(path);
       }
     });
 

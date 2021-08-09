@@ -1,6 +1,6 @@
 ## mini JS bundler ![image](https://api.travis-ci.com/frankcortes/mini-js-bundler.svg?branch=main)
 
-A simple js bundler with no config but the main file as a unique argument, works with commonjs modules. Totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1)). It also supports _partially_ the ES modules syntax, a good description of them is done [here](https://exploringjs.com/impatient-js/ch_modules.html).
+A simple js bundler with no config but the main file as a unique argument, works with commonjs modules. Totally commonjs complaint (see [doc](http://wiki.commonjs.org/wiki/Modules/1.1)). It also supports the ES modules syntax (pre 2020), a good description of them is done [here](https://exploringjs.com/impatient-js/ch_modules.html).
 
 ![Example about how works](./docs/example-output.jpg)
 
